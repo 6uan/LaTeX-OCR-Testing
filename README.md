@@ -7,14 +7,14 @@ The goal of this project is to create a learning based system that takes an imag
 ![header](https://user-images.githubusercontent.com/55287601/109183599-69431f00-778e-11eb-9809-d42b9451e018.png)
 
 ## Using the model
-To run the model you need Python 3.7+
+To run the model you need Python 3.7+ ✔
 
-If you don't have PyTorch installed. Follow their instructions [here](https://pytorch.org/get-started/locally/).
+If you don't have PyTorch installed. Follow their instructions [here](https://pytorch.org/get-started/locally/). ✔
 
 Install the package `pix2tex`: 
 
 ```
-pip install "pix2tex[gui]"
+pip install "pix2tex[gui]" ✔
 ```
 
 Model checkpoints will be downloaded automatically.
@@ -23,10 +23,6 @@ There are three ways to get a prediction from an image.
 1. You can use the command line tool by calling `pix2tex`. Here you can parse already existing images from the disk and images in your clipboard.
 
 2. Thanks to [@katie-lim](https://github.com/katie-lim), you can use a nice user interface as a quick way to get the model prediction. Just call the GUI with `latexocr`. From here you can take a screenshot and the predicted latex code is rendered using [MathJax](https://www.mathjax.org/) and copied to your clipboard.
-
-    Under linux, it is possible to use the GUI with `gnome-screenshot` (which comes with multiple monitor support) if `gnome-screenshot` was installed beforehand. For Wayland, `grim` and `slurp` will be used when they are both available. Note that `gnome-screenshot` is not compatible with wlroots-based Wayland compositors. Since `gnome-screenshot` will be preferred when available, you may have to set the environment variable `SCREENSHOT_TOOL` to `grim` in this case (other available values are `gnome-screenshot` and `pil`).
-
-    ![demo](https://user-images.githubusercontent.com/55287601/117812740-77b7b780-b262-11eb-81f6-fc19766ae2ae.gif)
 
     If the model is unsure about the what's in the image it might output a different prediction every time you click "Retry". With the `temperature` parameter you can control this behavior (low temperature will produce the same result).
 
@@ -59,13 +55,6 @@ There are three ways to get a prediction from an image.
 The model works best with images of smaller resolution. That's why I added a preprocessing step where another neural network predicts the optimal resolution of the input image. This model will automatically resize the custom image to best resemble the training data and thus increase performance of images found in the wild. Still it's not perfect and might not be able to handle huge images optimally, so don't zoom in all the way before taking a picture. 
 
 Always double check the result carefully. You can try to redo the prediction with an other resolution if the answer was wrong.
-
-**Want to use the package?**
-
-I'm trying to compile a documentation right now. 
-
-Visit here: https://pix2tex.readthedocs.io/ 
-
 
 ## Training the model [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lukas-blecher/LaTeX-OCR/blob/main/notebooks/LaTeX_OCR_training.ipynb)
 
@@ -102,6 +91,10 @@ The model consist of a ViT [[1](#References)] encoder with a ResNet backbone and
 ## Data
 We need paired data for the network to learn. Luckily there is a lot of LaTeX code on the internet, e.g. [wikipedia](https://www.wikipedia.org), [arXiv](https://www.arxiv.org). We also use the formulae from the [im2latex-100k](https://zenodo.org/record/56198#.V2px0jXT6eA) [[3](#References)] dataset.
 All of it can be found [here](https://drive.google.com/drive/folders/13CA4vAmOmD_I_dSbvLp-Lf0s6KiaNfuO)
+
+## Data Sources 
+
+Kaggle Datasets: https://www.kaggle.com/datasets/aidapearson/ocr-data
 
 ### Dataset Requirements
 In order to render the math in many different fonts we use  XeLaTeX, generate a PDF and finally convert it to a PNG. For the last step we need to use some third party tools: 
