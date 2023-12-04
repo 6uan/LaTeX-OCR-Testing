@@ -22,6 +22,7 @@ LaTeX is the preferred format when creating academic material. An OCR that speci
 *Uncovered and meticulously analyzed three distinct biases present in ChatGPT, employing advanced Python techniques and data analysis methodologies, all within AI4ALL's cutting-edge Apply AI program.*
 
 
+
 ## Problem Statement <!--- do not change this line -->
 
 When **academic professionals** use old documents, build upon the math found in scientific papers, or repurpose documents made by other academic professionals, they need the original LaTeX syntax to do their work. Currently, professors would manually create the equations or email the author assuming they can get a hold of them and they reply. This is an unreliable and tedious process.
