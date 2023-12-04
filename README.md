@@ -1,8 +1,33 @@
 # pix2tex - LaTeX OCR
 
-[![GitHub](https://img.shields.io/github/license/lukas-blecher/LaTeX-OCR)](https://github.com/lukas-blecher/LaTeX-OCR) [![Documentation Status](https://readthedocs.org/projects/pix2tex/badge/?version=latest)](https://pix2tex.readthedocs.io/en/latest/?badge=latest) [![PyPI](https://img.shields.io/pypi/v/pix2tex?logo=pypi)](https://pypi.org/project/pix2tex) [![PyPI - Downloads](https://img.shields.io/pypi/dm/pix2tex?logo=pypi)](https://pypi.org/project/pix2tex) [![GitHub all releases](https://img.shields.io/github/downloads/lukas-blecher/LaTeX-OCR/total?color=blue&logo=github)](https://github.com/lukas-blecher/LaTeX-OCR/releases) [![Docker Pulls](https://img.shields.io/docker/pulls/lukasblecher/pix2tex?logo=docker)](https://hub.docker.com/r/lukasblecher/pix2tex) [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/lukas-blecher/LaTeX-OCR/blob/main/notebooks/LaTeX_OCR_test.ipynb) [![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/lukbl/LaTeX-OCR)
+[![GitHub](https://img.shields.io/github/license/lukas-blecher/LaTeX-OCR)](https://github.com/lukas-blecher/LaTeX-OCR) [![Documentation Status](https://readthedocs.org/projects/pix2tex/badge/?version=latest)](https://pix2tex.readthedocs.io/en/latest/?badge=latest) [![PyPI](https://img.shields.io/pypi/v/pix2tex?logo=pypi)](https://pypi.org/project/pix2tex) [![PyPI - Downloads](https://img.shields.io/pypi/dm/pix2tex?logo=pypi)](https://pypi.org/project/pix2tex) [![GitHub all releases](https://img.shields.io/github/downloads/lukas-blecher/LaTeX-OCR/total?color=blue&logo=github)](https://github.com/lukas-blecher/LaTeX-OCR/releases) 
 
-The goal of this project is to create a learning based system that takes an image of a math formula and returns corresponding LaTeX code. 
+
+# LaTeX OCR - with Handwritten Recognition
+
+Build upon the pix2tex project. It is an LaTeX OCR that takes the most recent image [of a formula or equation] in your clipboard and converts it into a LaTeX format.
+
+LaTeX is the preferred format when creating academic material. An OCR that specializes in converting image equation to LaTeX equations would allow students and academic professional to leverage the older material on more advanced mathematical subjects where most of the searchable resources out there are on subject closely related to algebra. Also, popular OCR tools like Socratic (made by Google) do not accurately read advanced calculus equations and creating the LaTeX equations from often lead to format mistakes.
+
+**Our Goals:**
+
+- Gain the competency of navigating, analyzing, and comprehending code bases; open-source contributing.
+
+- Use additional data to expand upon the tool’s the handwritten scanning capabilities.
+
+
+*EXAMPLE:*
+*Uncovered and meticulously analyzed three distinct biases present in ChatGPT, employing advanced Python techniques and data analysis methodologies, all within AI4ALL's cutting-edge Apply AI program.*
+
+
+## Problem Statement <!--- do not change this line -->
+
+When **academic professionals** use old documents, build upon the math found in scientific papers, or repurpose documents made by other academic professionals, they need the original LaTeX syntax to do their work. Currently, professors would manually create the equations or email the author assuming they can get a hold of them and they reply. This is an unreliable and tedious process.
+
+When **students** do their homework or search for help online, they need a standard and reliable format to share their equations. Currently, students don’t search for help or hand write their equations. When using AI tools and search engines LaTeX is often the only format that computers can read large, complex, or calculus equations. This is an unrefined process when we have LaTeX, but LaTeX is hard to learn and not well known among students. When student do try LaTeX, it’s very easy to make mistakes.
+
+
+## Preview from Lukas Blecher
 
 ![header](https://user-images.githubusercontent.com/55287601/109183599-69431f00-778e-11eb-9809-d42b9451e018.png)
 
@@ -26,23 +51,7 @@ There are three ways to get a prediction from an image.
 
     If the model is unsure about the what's in the image it might output a different prediction every time you click "Retry". With the `temperature` parameter you can control this behavior (low temperature will produce the same result).
 
-3. You can use an API. This has additional dependencies. Install via `pip install -U "pix2tex[api]"` and run
-    ```bash
-    python -m pix2tex.api.run
-    ```
-    to start a [Streamlit](https://streamlit.io/) demo that connects to the API at port 8502. There is also a docker image  available for the API: https://hub.docker.com/r/lukasblecher/pix2tex [![Docker Image Size (latest by date)](https://img.shields.io/docker/image-size/lukasblecher/pix2tex?logo=docker)](https://hub.docker.com/r/lukasblecher/pix2tex)
-
-    ```
-    docker pull lukasblecher/pix2tex:api
-    docker run --rm -p 8502:8502 lukasblecher/pix2tex:api
-    ```
-    To also run the streamlit demo run
-    ```
-    docker run --rm -it -p 8501:8501 --entrypoint python lukasblecher/pix2tex:api pix2tex/api/run.py
-    ```
-    and navigate to http://localhost:8501/
-
-4. Use from within Python
+3. Use from within Python
     ```python
     from PIL import Image
     from pix2tex.cli import LatexOCR
@@ -88,36 +97,10 @@ The model consist of a ViT [[1](#References)] encoder with a ResNet backbone and
 | ---------- | -------------------- | -------------- |
 | 0.88       | 0.10                 | 0.60           |
 
-## Data
-We need paired data for the network to learn. Luckily there is a lot of LaTeX code on the internet, e.g. [wikipedia](https://www.wikipedia.org), [arXiv](https://www.arxiv.org). We also use the formulae from the [im2latex-100k](https://zenodo.org/record/56198#.V2px0jXT6eA) [[3](#References)] dataset.
-All of it can be found [here](https://drive.google.com/drive/folders/13CA4vAmOmD_I_dSbvLp-Lf0s6KiaNfuO)
 
 ## Data Sources 
 
 Kaggle Datasets: https://www.kaggle.com/datasets/aidapearson/ocr-data
-
-### Dataset Requirements
-In order to render the math in many different fonts we use  XeLaTeX, generate a PDF and finally convert it to a PNG. For the last step we need to use some third party tools: 
-* [XeLaTeX](https://www.ctan.org/pkg/xetex)
-* [ImageMagick](https://imagemagick.org/) with [Ghostscript](https://www.ghostscript.com/index.html). (for converting pdf to png)
-* [Node.js](https://nodejs.org/) to run [KaTeX](https://github.com/KaTeX/KaTeX) (for normalizing Latex code)
-* Python 3.7+ & dependencies (specified in `setup.py`)
-
-### Fonts
-Latin Modern Math, GFSNeohellenicMath.otf, Asana Math, XITS Math, Cambria Math
-
-
-## TODO
-- [x] add more evaluation metrics
-- [x] create a GUI
-- [ ] add beam search
-- [ ] support handwritten formulae (kinda done, see training colab notebook)
-- [ ] reduce model size (distillation)
-- [ ] find optimal hyperparameters
-- [ ] tweak model structure
-- [ ] fix data scraping and scrape more data
-- [ ] trace the model ([#2](https://github.com/lukas-blecher/LaTeX-OCR/issues/2))
-
 
 ## Contribution
 Contributions of any kind are welcome.
