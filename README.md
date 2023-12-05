@@ -43,21 +43,17 @@ Kaggle Datasets: https://www.kaggle.com/datasets/aidapearson/ocr-data
 
 ## Technologies Used <!--- do not change this line -->
 
-(UPDATE IN README.md)
-List the technologies, libraries, and frameworks used in your project.
-
-*EXAMPLE:*
-- *Python*
-- *pandas*
-- *OpenAI API*
+- Python
+- Google Collaborate
+- Wandb
 
 
 ## Authors <!--- do not change this line -->
 
-Juan Gomez - Undergraduate - [GitHub](https://github.com/6uan) - [LinkedIn](https://www.linkedin.com/in/j-gomez-/)
-Enrique Torres - Undergraduate - [GitHub](https://github.com/EnriqueTMT) - [LinkedIn](https://www.linkedin.com/in/tenrique/)
-Lukas Blecher (original developer of pix2tex) - [GitHub](https://github.com/lukas-blecher)
-Contributing developers to pix2tex
+Juan Gomez - Undergraduate - [GitHub](https://github.com/6uan) - [LinkedIn](https://www.linkedin.com/in/j-gomez-/) <br>
+Enrique Torres - Undergraduate - [GitHub](https://github.com/EnriqueTMT) - [LinkedIn](https://www.linkedin.com/in/tenrique/) <br>
+Lukas Blecher (original developer of pix2tex) - [GitHub](https://github.com/lukas-blecher) <br>
+Contributing developers to pix2tex <br>
 
 
 ## Using the model
